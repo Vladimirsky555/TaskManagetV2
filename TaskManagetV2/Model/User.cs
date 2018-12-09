@@ -16,6 +16,8 @@ namespace TaskManagetV2.Model
         public string NickName { get; set; }
         public bool IsAdmin { get; set; }
 
+
+
         public User()
         {
             ID = Guid.NewGuid();

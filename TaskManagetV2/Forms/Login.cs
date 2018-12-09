@@ -7,18 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TaskManagetV2.Model;
 
 namespace TaskManagetV2.Forms
 {
     public partial class Login : Form
     {
+        public delegate void UserDelegate(User user);
+        public UserDelegate userDelegate;
+
         public delegate bool ValidateDelegate(string login, string password);
 
         private ValidateDelegate closeDelegate;
 
-        public Login(ValidateDelegate closeDelegate)
+        public Login(ValidateDelegate closeDelegate, UserDelegate _userDelegate)
         {
             InitializeComponent();
+            userDelegate = _userDelegate;
             this.closeDelegate = closeDelegate;
         }
 
@@ -70,7 +75,7 @@ namespace TaskManagetV2.Forms
 
         private void btnCreateNew_Click(object sender, EventArgs e)
         {
-            //TODO создать форму регистрации пользователя
+            new CreateNewUser(userDelegate).ShowDialog();
         }
     }
 }
