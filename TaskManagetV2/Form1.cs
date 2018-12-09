@@ -26,13 +26,19 @@ namespace TaskManagetV2
             new Login((login, password) => {
                 current = DB.Users.Where(f => f.Login == login && f.Password == password).FirstOrDefault();
                 return current != null;
-            }).ShowDialog();
+            }, CreateNew).ShowDialog();
 
             if (current == null)
                 Close();//(ВЕЛОР)TODO разобраться
             else
                 pnlMain.Enabled = true;
 
+        }
+
+        public void CreateNew(User user)
+        {
+            if (DB.Users.Contains(user)) return;
+                DB.Users.Add(user);
         }
 
         private void btnEditUser_Click(object sender, EventArgs e)

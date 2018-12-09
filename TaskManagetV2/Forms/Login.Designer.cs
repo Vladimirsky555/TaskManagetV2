@@ -97,7 +97,7 @@
             this.btnCreateNew.Name = "btnCreateNew";
             this.btnCreateNew.Size = new System.Drawing.Size(75, 23);
             this.btnCreateNew.TabIndex = 6;
-            this.btnCreateNew.Text = "Ок";
+            this.btnCreateNew.Text = "Sing In";
             this.btnCreateNew.UseVisualStyleBackColor = true;
             this.btnCreateNew.Click += new System.EventHandler(this.btnCreateNew_Click);
             // 

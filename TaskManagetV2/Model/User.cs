@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TaskManagetV2.Model
 {
     [Serializable]
-    class User
+    public class User
     {
         public Guid ID { get; set; }
         public string Login { get; set; }
@@ -15,6 +15,8 @@ namespace TaskManagetV2.Model
         public string FIO { get; set; }
         public string NickName { get; set; }
         public bool IsAdmin { get; set; }
+
+
 
         public User()
         {
