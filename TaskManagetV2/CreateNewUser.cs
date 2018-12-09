@@ -66,7 +66,6 @@ namespace TaskManagetV2
                 if(control is TextBox)
                 {
                     PropertyInfo p = (PropertyInfo)control.Tag;
-                    if (p.GetType() != typeof(string)) continue;
                     p.SetValue(user, control.Text);
                 }
             }
