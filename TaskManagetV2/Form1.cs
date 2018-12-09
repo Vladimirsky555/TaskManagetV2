@@ -37,12 +37,14 @@ namespace TaskManagetV2
 
         private void btnEditUser_Click(object sender, EventArgs e)
         {
-            //TODO Закончить окно редактирования / создания пользователя
+            CreateEdit formEdit = new CreateEdit(current);
+            formEdit.ShowDialog();
         }
 
         private void btnEditAtricle_Click(object sender, EventArgs e)
         {
-            //TODO Закончить окно редактирования / создания Заметки
+            CreateEdit formEdit = new CreateEdit(new User());
+            formEdit.ShowDialog();
         }
     }
 }

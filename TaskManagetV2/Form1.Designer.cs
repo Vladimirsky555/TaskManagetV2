@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.btnEditUser = new System.Windows.Forms.Button();
             this.btnEditAtricle = new System.Windows.Forms.Button();
+            this.btnEditUser = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddUser = new System.Windows.Forms.Button();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -39,22 +41,14 @@
             this.pnlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlMain.Controls.Add(this.button1);
+            this.pnlMain.Controls.Add(this.btnAddUser);
             this.pnlMain.Controls.Add(this.btnEditAtricle);
             this.pnlMain.Controls.Add(this.btnEditUser);
             this.pnlMain.Location = new System.Drawing.Point(12, 12);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(886, 505);
             this.pnlMain.TabIndex = 0;
-            // 
-            // btnEditUser
-            // 
-            this.btnEditUser.Location = new System.Drawing.Point(3, 3);
-            this.btnEditUser.Name = "btnEditUser";
-            this.btnEditUser.Size = new System.Drawing.Size(880, 23);
-            this.btnEditUser.TabIndex = 0;
-            this.btnEditUser.Text = "Создание/Редактирование пользователя";
-            this.btnEditUser.UseVisualStyleBackColor = true;
-            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
             // 
             // btnEditAtricle
             // 
@@ -65,6 +59,35 @@
             this.btnEditAtricle.Text = "Создание/Редактирование Заметок";
             this.btnEditAtricle.UseVisualStyleBackColor = true;
             this.btnEditAtricle.Click += new System.EventHandler(this.btnEditAtricle_Click);
+            // 
+            // btnEditUser
+            // 
+            this.btnEditUser.Location = new System.Drawing.Point(3, 3);
+            this.btnEditUser.Name = "btnEditUser";
+            this.btnEditUser.Size = new System.Drawing.Size(880, 23);
+            this.btnEditUser.TabIndex = 0;
+            this.btnEditUser.Text = "Редактирование пользователя";
+            this.btnEditUser.UseVisualStyleBackColor = true;
+            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(345, 126);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(8, 8);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.Location = new System.Drawing.Point(3, 61);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(880, 23);
+            this.btnAddUser.TabIndex = 1;
+            this.btnAddUser.Text = "Создание пользователя";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnEditAtricle_Click);
             // 
             // Form1
             // 
@@ -84,6 +107,8 @@
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Button btnEditUser;
         private System.Windows.Forms.Button btnEditAtricle;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddUser;
     }
 }
 
