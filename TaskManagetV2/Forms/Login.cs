@@ -19,29 +19,58 @@ namespace TaskManagetV2.Forms
         public Login(ValidateDelegate closeDelegate)
         {
             InitializeComponent();
-            //TODO закончить инициализацию
+            this.closeDelegate = closeDelegate;
         }
 
         private bool checkData()
         {
-            //TODO сделатьл проверку на заполнение полей
-            //Если поле не заполнено то подсветить его красным
-            //Как только пользователь начнет в это поле что то вводить
-            //То поле становится белым
+            bool isCorrect = true;
 
-            return false;
+            if (string.IsNullOrWhiteSpace(tbxLogin.Text)) {
+                tbxLogin.BackColor = Color.Red;
+                isCorrect = false;
+            }
+            if (string.IsNullOrWhiteSpace(tbxPassword.Text)) {
+                tbxPassword.BackColor = Color.Red;
+                isCorrect = false;
+            }
+
+            return isCorrect;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            //TODO Вызвать проверку на заполение
-            //TODO опросить делегат
-            //TODO вызвать btnCancel_Click
+            if (checkData())
+            {
+                if (closeDelegate(tbxLogin.Text, tbxPassword.Text))
+                    btnCancel_Click(sender, e);
+                else
+                {
+                    tbxLogin.BackColor = Color.Red;
+                    tbxPassword.BackColor = Color.Red;
+                    MessageBox.Show("Логин и/или пароль неверен!");
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            //TODO закрыть окно
+            Close();
+        }
+
+        private void tbxLogin_TextChanged(object sender, EventArgs e)
+        {
+            tbxLogin.BackColor = Color.White;
+        }
+
+        private void tbxPassword_TextChanged(object sender, EventArgs e)
+        {
+            tbxPassword.BackColor = Color.White;
+        }
+
+        private void btnCreateNew_Click(object sender, EventArgs e)
+        {
+            //TODO создать форму регистрации пользователя
         }
     }
 }

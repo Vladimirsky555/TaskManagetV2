@@ -14,13 +14,29 @@ namespace TaskManagetV2.Model
         public DBHolder()
         {
             Users = new List<User>();
-            //TODO вызвать дефолтные данные
+
+            restoreDefault();
         }
 
         public void restoreDefault()
         {
             //TODO Заполнить дефолтные значения
-            //TODO создать первого пользователя с логином и паролем admin/admin
+            createAdmin();
+        }
+
+        private void createAdmin()
+        {
+            if (Users.Where(f => f.Login == "admin").FirstOrDefault() == null)
+            {
+                Users.Add(new User
+                {
+                    FIO = "admin",
+                    IsAdmin = true,
+                    Login = "admin",
+                    NickName = "admin",
+                    Password = "admin"
+                });
+            }
         }
     }
 }

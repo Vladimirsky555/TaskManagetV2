@@ -34,6 +34,7 @@
             this.tbxPassword = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
+            this.btnCreateNew = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbxLogin
@@ -42,6 +43,7 @@
             this.tbxLogin.Name = "tbxLogin";
             this.tbxLogin.Size = new System.Drawing.Size(321, 20);
             this.tbxLogin.TabIndex = 0;
+            this.tbxLogin.TextChanged += new System.EventHandler(this.tbxLogin_TextChanged);
             // 
             // label1
             // 
@@ -67,6 +69,7 @@
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.Size = new System.Drawing.Size(321, 20);
             this.tbxPassword.TabIndex = 2;
+            this.tbxPassword.TextChanged += new System.EventHandler(this.tbxPassword_TextChanged);
             // 
             // btnCancel
             // 
@@ -88,11 +91,22 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // btnCreateNew
+            // 
+            this.btnCreateNew.Location = new System.Drawing.Point(21, 105);
+            this.btnCreateNew.Name = "btnCreateNew";
+            this.btnCreateNew.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateNew.TabIndex = 6;
+            this.btnCreateNew.Text = "Ок";
+            this.btnCreateNew.UseVisualStyleBackColor = true;
+            this.btnCreateNew.Click += new System.EventHandler(this.btnCreateNew_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 144);
+            this.Controls.Add(this.btnCreateNew);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label2);
@@ -114,5 +128,6 @@
         private System.Windows.Forms.TextBox tbxPassword;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnCreateNew;
     }
 }

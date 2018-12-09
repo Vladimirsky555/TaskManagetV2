@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TaskManagetV2.Forms;
 using TaskManagetV2.Model;
 
 namespace TaskManagetV2
@@ -14,16 +15,34 @@ namespace TaskManagetV2
     public partial class Form1 : Form
     {
         private DBHolder DB { get; }
+        User current = null;
+
         public Form1()
         {
             InitializeComponent();
 
             DB = new DBHolder();
 
-            //TODO вызвать окно логина
-            //Забрать оттуда логин и пароль
-            //Сохранить его в этом классе
-            //Разблокировать pnlMain
+            new Login((login, password) => {
+                current = DB.Users.Where(f => f.Login == login && f.Password == password).FirstOrDefault();
+                return current != null;
+            }).ShowDialog();
+
+            if (current == null)
+                Close();//(ВЕЛОР)TODO разобраться
+            else
+                pnlMain.Enabled = true;
+
+        }
+
+        private void btnEditUser_Click(object sender, EventArgs e)
+        {
+            //TODO Закончить окно редактирования / создания пользователя
+        }
+
+        private void btnEditAtricle_Click(object sender, EventArgs e)
+        {
+            //TODO Закончить окно редактирования / создания Заметки
         }
     }
 }

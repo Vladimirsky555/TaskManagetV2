@@ -14,10 +14,16 @@ namespace TaskManagetV2.Model
         public string Password { get; set; }
         public string FIO { get; set; }
         public string NickName { get; set; }
+        public bool IsAdmin { get; set; }
 
         public User()
         {
-            //TODO закончить конструктор
+            ID = Guid.NewGuid();
+            Login = "";
+            Password = "";
+            FIO = "";
+            NickName = "";
+            IsAdmin = false;
         }
     }
 }
