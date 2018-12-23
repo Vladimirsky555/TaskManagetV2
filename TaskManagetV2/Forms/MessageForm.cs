@@ -15,19 +15,19 @@ namespace TaskManagetV2.Forms
 
         public delegate void closeDelegate(MessageForm sender);
 
-        private closeDelegate resiver;
+        private closeDelegate receiver;
 
-        public MessageForm(string message, closeDelegate resiver)
+        public MessageForm(string message, closeDelegate receiver)
         {
             InitializeComponent();
 
-            this.resiver = resiver;
+            this.receiver = receiver;
             this.textBox1.Text = message;
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            resiver?.Invoke(this);
+            receiver?.Invoke(this);
             base.OnClosing(e);
         }
     }

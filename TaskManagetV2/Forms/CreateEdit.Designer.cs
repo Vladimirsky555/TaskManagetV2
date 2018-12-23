@@ -43,7 +43,7 @@
             // lblFIO
             // 
             this.lblFIO.AutoSize = true;
-            this.lblFIO.Location = new System.Drawing.Point(13, 13);
+            this.lblFIO.Location = new System.Drawing.Point(9, 13);
             this.lblFIO.Name = "lblFIO";
             this.lblFIO.Size = new System.Drawing.Size(34, 13);
             this.lblFIO.TabIndex = 0;
@@ -59,7 +59,7 @@
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(13, 61);
+            this.lblLogin.Location = new System.Drawing.Point(9, 61);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(38, 13);
             this.lblLogin.TabIndex = 0;
@@ -92,21 +92,21 @@
             // 
             // tbxNickname
             // 
-            this.tbxNickname.Location = new System.Drawing.Point(8, 125);
+            this.tbxNickname.Location = new System.Drawing.Point(12, 125);
             this.tbxNickname.Name = "tbxNickname";
             this.tbxNickname.Size = new System.Drawing.Size(283, 20);
             this.tbxNickname.TabIndex = 1;
             // 
             // tbxPassword
             // 
-            this.tbxPassword.Location = new System.Drawing.Point(8, 173);
+            this.tbxPassword.Location = new System.Drawing.Point(12, 173);
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.Size = new System.Drawing.Size(283, 20);
             this.tbxPassword.TabIndex = 1;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(8, 261);
+            this.btnOk.Location = new System.Drawing.Point(12, 261);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(136, 47);
             this.btnOk.TabIndex = 2;
