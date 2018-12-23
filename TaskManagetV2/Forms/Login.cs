@@ -78,9 +78,9 @@ namespace TaskManagetV2.Forms
             new CreateNewUser(userDelegate).ShowDialog();
         }
 
-        private void EnterPressed(object sender, KeyPressEventArgs e)
+        private void EnterPress(object sender, PreviewKeyDownEventArgs e)
         {
-            //if(e)btnOk_Click(sender, e);
+            if (e.KeyCode == Keys.Return) btnOk_Click(sender, e);
         }
     }
 }
