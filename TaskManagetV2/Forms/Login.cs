@@ -80,7 +80,7 @@ namespace TaskManagetV2.Forms
 
         private void EnterPressed(object sender, KeyPressEventArgs e)
         {
-            btnOk_Click(sender, e);
+            //if(e)btnOk_Click(sender, e);
         }
     }
 }
