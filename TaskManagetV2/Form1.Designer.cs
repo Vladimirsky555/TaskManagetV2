@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.btnAddUser = new System.Windows.Forms.Button();
             this.btnEditAtricle = new System.Windows.Forms.Button();
             this.btnEditUser = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnAddUser = new System.Windows.Forms.Button();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +49,16 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(886, 505);
             this.pnlMain.TabIndex = 0;
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.Location = new System.Drawing.Point(3, 61);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(880, 23);
+            this.btnAddUser.TabIndex = 1;
+            this.btnAddUser.Text = "Создание пользователя";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnEditAtricle_Click);
             // 
             // btnEditAtricle
             // 
@@ -72,22 +82,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(345, 126);
+            this.button1.Location = new System.Drawing.Point(3, 90);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(8, 8);
+            this.button1.Size = new System.Drawing.Size(880, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
+            this.button1.Text = "Таймер";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnAddUser
-            // 
-            this.btnAddUser.Location = new System.Drawing.Point(3, 61);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(880, 23);
-            this.btnAddUser.TabIndex = 1;
-            this.btnAddUser.Text = "Создание пользователя";
-            this.btnAddUser.UseVisualStyleBackColor = true;
-            this.btnAddUser.Click += new System.EventHandler(this.btnEditAtricle_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -107,8 +108,8 @@
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Button btnEditUser;
         private System.Windows.Forms.Button btnEditAtricle;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.Button button1;
     }
 }
 

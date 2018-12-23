@@ -22,9 +22,12 @@ namespace TaskManagetV2
             InitializeComponent();
 
             DB = new DBHolder();
+            DB.loadData();
 
             new Login((login, password) => {
-                current = DB.Users.Where(f => f.Login == login && f.Password == password).FirstOrDefault();
+                current = DB.Users.Where(f => 
+                    f.Login == login && 
+                    f.Password == User.encodePassword(password)).FirstOrDefault();
                 return current != null;
             }, CreateNew).ShowDialog();
 
@@ -51,6 +54,17 @@ namespace TaskManagetV2
         {
             CreateEdit formEdit = new CreateEdit(new User());
             formEdit.ShowDialog();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            DB.Save();
+            base.OnClosing(e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Timer_form().Show();
         }
     }
 }
