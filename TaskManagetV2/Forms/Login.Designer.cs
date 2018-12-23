@@ -44,6 +44,7 @@
             this.tbxLogin.Size = new System.Drawing.Size(321, 20);
             this.tbxLogin.TabIndex = 0;
             this.tbxLogin.TextChanged += new System.EventHandler(this.tbxLogin_TextChanged);
+            this.tbxLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterPressed);
             // 
             // label1
             // 
@@ -70,6 +71,7 @@
             this.tbxPassword.Size = new System.Drawing.Size(321, 20);
             this.tbxPassword.TabIndex = 2;
             this.tbxPassword.TextChanged += new System.EventHandler(this.tbxPassword_TextChanged);
+            this.tbxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterPressed);
             // 
             // btnCancel
             // 

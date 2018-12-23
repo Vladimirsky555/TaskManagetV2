@@ -77,5 +77,10 @@ namespace TaskManagetV2.Forms
         {
             new CreateNewUser(userDelegate).ShowDialog();
         }
+
+        private void EnterPressed(object sender, KeyPressEventArgs e)
+        {
+            btnOk_Click(sender, e);
+        }
     }
 }
