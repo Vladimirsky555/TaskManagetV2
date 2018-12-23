@@ -36,7 +36,7 @@
             // 
             // dtp_date
             // 
-            this.dtp_date.CustomFormat = "yyyy.mm.dd  HH:mm:ss";
+            this.dtp_date.CustomFormat = "yyyy.MM.dd  HH:mm:ss";
             this.dtp_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtp_date.Location = new System.Drawing.Point(3, 3);
             this.dtp_date.Name = "dtp_date";
