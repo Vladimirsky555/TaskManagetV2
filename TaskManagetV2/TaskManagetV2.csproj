@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\AlarmRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\AlarmRow.Designer.cs">
+      <DependentUpon>AlarmRow.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateNewUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\AlarmRow.resx">
+      <DependentUpon>AlarmRow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateNewUser.resx">
       <DependentUpon>CreateNewUser.cs</DependentUpon>
     </EmbeddedResource>

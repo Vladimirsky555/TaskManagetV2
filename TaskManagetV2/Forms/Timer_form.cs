@@ -8,59 +8,43 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TaskManagetV2.Components;
 
 namespace TaskManagetV2.Forms
 {
     public partial class Timer_form : Form
     {
-        List<DateTime> times = new List<DateTime>();
         Mutex th = new Mutex();
 
         List<MessageForm> messages = new List<MessageForm>();
-
-        private void initTimers()
-        {
-            var d = DateTime.Now;
-            d = d.AddMilliseconds(3000);
-
-            times.Add(d);
-
-            d = DateTime.Now;
-            d = d.AddMilliseconds(5000);
-
-            times.Add(d);
-
-            d = DateTime.Now;
-            d = d.AddMilliseconds(8000);
-
-            times.Add(d);
-
-            d = DateTime.Now;
-            d = d.AddMilliseconds(12000);
-
-            times.Add(d);
-        }
 
 
         private void startNew()
         {
             main_timer.Stop();
 
-            if (times.Count == 0) return;
+            if (tlp_main.Controls.Count == 0) return;
 
-            DateTime t = times.Min();
+            DateTime t = GetAlarmArray().Min(f => f.StartDate);
             int tmp = (int)(t - DateTime.Now).TotalMilliseconds;
             if (tmp <= 0) tmp = 100;
-            main_timer.Interval = (int)(t - DateTime.Now).TotalMilliseconds;
+            main_timer.Interval = tmp;
             main_timer.Start();
+        }
+
+        private IEnumerable<AlarmRow> GetAlarmArray()
+        {
+            List<AlarmRow> arr = new List<AlarmRow>();
+            foreach (var element in tlp_main.Controls)
+                arr.Add((AlarmRow)element);
+
+            return arr;
         }
 
         public Timer_form()
         {
             InitializeComponent();
 
-
-            initTimers();
             startNew();
         }
 
@@ -68,12 +52,12 @@ namespace TaskManagetV2.Forms
         {
             th.WaitOne();
             main_timer.Stop();
-            List<DateTime> arr = new List<DateTime>();
-            foreach (var item in times)
+            List<AlarmRow> arr = new List<AlarmRow>();
+            foreach (var item in GetAlarmArray())
             {
                 var tmp = DateTime.Now;
 
-                if (item <= tmp)
+                if (item.StartDate <= tmp)
                 {
                     arr.Add(item);
                 }
@@ -81,12 +65,12 @@ namespace TaskManagetV2.Forms
 
             foreach (var item in arr)
             {
-                times.Remove(item);
+                tlp_main.Controls.Remove(item);
             }
 
             foreach (var item in arr)
             {
-                var box = new MessageForm("Time Now " + item.ToLongTimeString(), closeDelegate);
+                var box = new MessageForm(item.Message, closeDelegate);
                 messages.Add(box);
                 box.Show();
 
@@ -108,6 +92,26 @@ namespace TaskManagetV2.Forms
             main_timer.Stop();
             foreach (var element in messages.ToArray())
                 element.Close();
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            var element = new AlarmRow();
+            element.OnDelete = OnItemDelete;
+            element.OnEdit = OnItemEdit;
+
+            tlp_main.Controls.Add(element);
+        }
+
+        void OnItemDelete (AlarmRow element)
+        {
+            tlp_main.Controls.Remove(element);
+            startNew();
+        }
+
+        void OnItemEdit(AlarmRow element)
+        {
+            startNew();
         }
     }
 }
