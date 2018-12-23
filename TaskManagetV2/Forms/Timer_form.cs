@@ -16,10 +16,10 @@ namespace TaskManagetV2.Forms
         List<DateTime> times = new List<DateTime>();
         Mutex th = new Mutex();
 
-        public Timer_form()
-        {
-            InitializeComponent();
+        List<MessageForm> messages = new List<MessageForm>();
 
+        private void initTimers()
+        {
             var d = DateTime.Now;
             d = d.AddMilliseconds(3000);
 
@@ -30,9 +30,38 @@ namespace TaskManagetV2.Forms
 
             times.Add(d);
 
-            main_timer.Interval = 1000;
-            main_timer.Tick += Main_timer_Tick;
+            d = DateTime.Now;
+            d = d.AddMilliseconds(8000);
+
+            times.Add(d);
+
+            d = DateTime.Now;
+            d = d.AddMilliseconds(12000);
+
+            times.Add(d);
+        }
+
+
+        private void startNew()
+        {
+            main_timer.Stop();
+
+            if (times.Count == 0) return;
+
+            DateTime t = times.Min();
+            int tmp = (int)(t - DateTime.Now).TotalMilliseconds;
+            if (tmp <= 0) tmp = 100;
+            main_timer.Interval = (int)(t - DateTime.Now).TotalMilliseconds;
             main_timer.Start();
+        }
+
+        public Timer_form()
+        {
+            InitializeComponent();
+
+
+            initTimers();
+            startNew();
         }
 
         private void Main_timer_Tick(object sender, EventArgs e)
@@ -57,10 +86,28 @@ namespace TaskManagetV2.Forms
 
             foreach (var item in arr)
             {
-                MessageBox.Show("asdfasdf");
+                var box = new MessageForm("Time Now " + item.ToLongTimeString(), closeDelegate);
+                messages.Add(box);
+                box.Show();
+
             }
-            main_timer.Start();
             th.ReleaseMutex();
+
+            startNew();
+        }
+
+        void closeDelegate(MessageForm sender)
+        {
+            messages.Remove(sender);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            main_timer.Stop();
+            foreach (var element in messages.ToArray())
+                element.Close();
         }
     }
 }
