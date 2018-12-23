@@ -1,6 +1,6 @@
 ﻿namespace TaskManagetV2.Forms
 {
-    partial class Timer_form
+    partial class MessageForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,27 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.main_timer = new System.Windows.Forms.Timer(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // main_timer
+            // textBox1
             // 
-            this.main_timer.Tick += new System.EventHandler(this.Main_timer_Tick);
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(12, 12);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(359, 87);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "dfvghxdfgh";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // Timer_form
+            // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Timer_form";
-            this.Text = "Timer";
+            this.ClientSize = new System.Drawing.Size(383, 111);
+            this.Controls.Add(this.textBox1);
+            this.Name = "MessageForm";
+            this.Text = "MessageForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Timer main_timer;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
