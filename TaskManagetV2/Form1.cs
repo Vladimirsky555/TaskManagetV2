@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskManagetV2.Forms;
 using TaskManagetV2.Model;
+using TaskManagetV2.Services;
 
 namespace TaskManagetV2
 {
@@ -16,6 +17,7 @@ namespace TaskManagetV2
     {
         private DBHolder DB { get; }
         User current = null;
+        ITimer timer;
 
         public Form1()
         {
@@ -35,6 +37,8 @@ namespace TaskManagetV2
                 Close();//(ВЕЛОР)TODO разобраться
             else
                 pnlMain.Enabled = true;
+
+            timer = new VTimer();
 
         }
 
@@ -64,7 +68,7 @@ namespace TaskManagetV2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Timer_form().Show();
+            new Timer_form(timer).Show();
         }
     }
 }

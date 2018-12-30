@@ -17,12 +17,22 @@ namespace TaskManagetV2.Forms
     {
         ITimer timer;
 
-        Timer_form(ITimer timer)
+        public Timer_form(ITimer timer)
         {
             InitializeComponent();
 
             this.timer = timer;
             this.timer.UpdateAll();
+
+            this.timer.DeleteDelegate += Timer_DeleteDelegate;
+
+            foreach (var item in timer.GetAll())
+                tlp_main.Controls.Add(item);
+        }
+
+        private void Timer_DeleteDelegate(AlarmRow e)
+        {
+            tlp_main.Controls.Remove(e);
         }
 
         //Mutex th = new Mutex();

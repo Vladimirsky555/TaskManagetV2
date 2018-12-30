@@ -7,8 +7,11 @@ using TaskManagetV2.Components;
 
 namespace TaskManagetV2.Services
 {
-    interface ITimer
+    public delegate void DeleteEvent(AlarmRow e);
+
+    public interface ITimer
     {
+        event DeleteEvent DeleteDelegate;
         void AddTask(AlarmRow element);
         void RemoveTask(AlarmRow element);
         IEnumerable<AlarmRow> GetAll();

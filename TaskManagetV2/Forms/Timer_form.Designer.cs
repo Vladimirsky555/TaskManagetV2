@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tlp_main = new System.Windows.Forms.TableLayoutPanel();
             this.btn_add = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // tlp_main
@@ -70,5 +72,6 @@
         #endregion
         private System.Windows.Forms.TableLayoutPanel tlp_main;
         private System.Windows.Forms.Button btn_add;
+        private System.Windows.Forms.Timer timer1;
     }
 }
