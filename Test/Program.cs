@@ -8,12 +8,24 @@ namespace Test
 {
     class Program
     {
+        static void fff()
+        {
+            Console.WriteLine("Я тест");
+        }
+
+        static void aaa()
+        {
+            Console.WriteLine("Я тест aaa");
+        }
+
         static void Main(string[] args)
         {
-            var d = DateTime.Now.AddSeconds(10);
-            var n = d - DateTime.Now;
+            var t = new TestT();
 
-            Console.WriteLine(n.TotalSeconds);
+            t.r += aaa;
+            t.r += fff;
+
+            t.exec();
         }
     }
 }
