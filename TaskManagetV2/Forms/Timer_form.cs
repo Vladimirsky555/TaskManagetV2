@@ -142,5 +142,17 @@ namespace TaskManagetV2.Forms
         {
             timer.UpdateAll();
         }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            while (tlp_main.Controls.Count > 0)
+            {
+                //var el = tlp_main.Controls[0];
+                tlp_main.Controls.RemoveAt(0);
+                //el.Dispose();
+            }
+
+            base.OnClosing(e);
+        }
     }
 }

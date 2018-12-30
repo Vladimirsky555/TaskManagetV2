@@ -68,7 +68,8 @@ namespace TaskManagetV2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Timer_form(timer).Show();
+            var t = new Timer_form(timer);
+            t.Show();
         }
     }
 }
