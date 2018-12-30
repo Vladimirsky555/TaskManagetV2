@@ -41,6 +41,14 @@ namespace TaskManagetV2.Components
             }
         }
 
+        public bool IsEdited
+        {
+            get
+            {
+                return btn_save.Enabled;
+            }
+        }
+
         public AlarmRow()
         {
             InitializeComponent();

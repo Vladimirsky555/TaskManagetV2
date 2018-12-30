@@ -25,7 +25,11 @@ namespace TaskManagetV2.Forms
 
             if (tlp_main.Controls.Count == 0) return;
 
-            DateTime t = GetAlarmArray().Min(f => f.StartDate);
+            var arr = GetAlarmArray()
+                            .Where(f => f.IsEdited == false);
+            if (arr.Count() == 0) return;
+
+            DateTime t = arr.Min(f => f.StartDate);
             int tmp = (int)(t - DateTime.Now).TotalMilliseconds;
             if (tmp <= 0) tmp = 100;
             main_timer.Interval = tmp;
@@ -53,7 +57,15 @@ namespace TaskManagetV2.Forms
             th.WaitOne();
             main_timer.Stop();
             List<AlarmRow> arr = new List<AlarmRow>();
-            foreach (var item in GetAlarmArray())
+
+            var tarr = GetAlarmArray()
+                                .Where(f => f.IsEdited == false);
+            if (tarr.Count() == 0) {
+                th.ReleaseMutex();
+                return;
+            }
+
+            foreach (var item in tarr)
             {
                 var tmp = DateTime.Now;
 
