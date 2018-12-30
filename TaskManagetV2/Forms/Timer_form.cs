@@ -9,102 +9,107 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskManagetV2.Components;
+using TaskManagetV2.Services;
 
 namespace TaskManagetV2.Forms
 {
     public partial class Timer_form : Form
     {
-        Mutex th = new Mutex();
+        ITimer timer;
 
-        List<MessageForm> messages = new List<MessageForm>();
-
-
-        private void startNew()
-        {
-            main_timer.Stop();
-
-            if (tlp_main.Controls.Count == 0) return;
-
-            var arr = GetAlarmArray()
-                            .Where(f => f.IsEdited == false);
-            if (arr.Count() == 0) return;
-
-            DateTime t = arr.Min(f => f.StartDate);
-            int tmp = (int)(t - DateTime.Now).TotalMilliseconds;
-            if (tmp <= 0) tmp = 100;
-            main_timer.Interval = tmp;
-            main_timer.Start();
-        }
-
-        private IEnumerable<AlarmRow> GetAlarmArray()
-        {
-            List<AlarmRow> arr = new List<AlarmRow>();
-            foreach (var element in tlp_main.Controls)
-                arr.Add((AlarmRow)element);
-
-            return arr;
-        }
-
-        public Timer_form()
+        Timer_form(ITimer timer)
         {
             InitializeComponent();
 
-            startNew();
+            this.timer = timer;
+            this.timer.UpdateAll();
         }
 
-        private void Main_timer_Tick(object sender, EventArgs e)
-        {
-            th.WaitOne();
-            main_timer.Stop();
-            List<AlarmRow> arr = new List<AlarmRow>();
+        //Mutex th = new Mutex();
 
-            var tarr = GetAlarmArray()
-                                .Where(f => f.IsEdited == false);
-            if (tarr.Count() == 0) {
-                th.ReleaseMutex();
-                return;
-            }
+        //List<MessageForm> messages = new List<MessageForm>();
 
-            foreach (var item in tarr)
-            {
-                var tmp = DateTime.Now;
 
-                if (item.StartDate <= tmp)
-                {
-                    arr.Add(item);
-                }
-            }
+        //private void startNew()
+        //{
+        //    main_timer.Stop();
 
-            foreach (var item in arr)
-            {
-                tlp_main.Controls.Remove(item);
-            }
+        //    if (tlp_main.Controls.Count == 0) return;
 
-            foreach (var item in arr)
-            {
-                var box = new MessageForm(item.Message, closeDelegate);
-                messages.Add(box);
-                box.Show();
+        //    var arr = GetAlarmArray()
+        //                    .Where(f => f.IsEdited == false);
+        //    if (arr.Count() == 0) return;
 
-            }
-            th.ReleaseMutex();
+        //    DateTime t = arr.Min(f => f.StartDate);
+        //    int tmp = (int)(t - DateTime.Now).TotalMilliseconds;
+        //    if (tmp <= 0) tmp = 100;
+        //    main_timer.Interval = tmp;
+        //    main_timer.Start();
+        //}
 
-            startNew();
-        }
+        //private IEnumerable<AlarmRow> GetAlarmArray()
+        //{
+        //    List<AlarmRow> arr = new List<AlarmRow>();
+        //    foreach (var element in tlp_main.Controls)
+        //        arr.Add((AlarmRow)element);
 
-        void closeDelegate(MessageForm sender)
-        {
-            messages.Remove(sender);
-        }
+        //    return arr;
+        //}
 
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            base.OnClosing(e);
 
-            main_timer.Stop();
-            foreach (var element in messages.ToArray())
-                element.Close();
-        }
+        //private void Main_timer_Tick(object sender, EventArgs e)
+        //{
+        //    th.WaitOne();
+        //    main_timer.Stop();
+        //    List<AlarmRow> arr = new List<AlarmRow>();
+
+        //    var tarr = GetAlarmArray()
+        //                        .Where(f => f.IsEdited == false);
+        //    if (tarr.Count() == 0) {
+        //        th.ReleaseMutex();
+        //        return;
+        //    }
+
+        //    foreach (var item in tarr)
+        //    {
+        //        var tmp = DateTime.Now;
+
+        //        if (item.StartDate <= tmp)
+        //        {
+        //            arr.Add(item);
+        //        }
+        //    }
+
+        //    foreach (var item in arr)
+        //    {
+        //        tlp_main.Controls.Remove(item);
+        //    }
+
+        //    foreach (var item in arr)
+        //    {
+        //        var box = new MessageForm(item.Message, closeDelegate);
+        //        messages.Add(box);
+        //        box.Show();
+
+        //    }
+        //    th.ReleaseMutex();
+
+        //    startNew();
+        //}
+
+        //void closeDelegate(MessageForm sender)
+        //{
+        //    messages.Remove(sender);
+        //}
+
+        //protected override void OnClosing(CancelEventArgs e)
+        //{
+        //    base.OnClosing(e);
+
+        //    main_timer.Stop();
+        //    foreach (var element in messages.ToArray())
+        //        element.Close();
+        //}
 
         private void btn_add_Click(object sender, EventArgs e)
         {
@@ -113,17 +118,19 @@ namespace TaskManagetV2.Forms
             element.OnEdit = OnItemEdit;
 
             tlp_main.Controls.Add(element);
+            timer.AddTask(element);
         }
 
         void OnItemDelete (AlarmRow element)
         {
             tlp_main.Controls.Remove(element);
-            startNew();
+            timer.RemoveTask(element);
+            timer.UpdateAll();
         }
 
         void OnItemEdit(AlarmRow element)
         {
-            startNew();
+            timer.UpdateAll();
         }
     }
 }
