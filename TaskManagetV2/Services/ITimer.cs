@@ -7,7 +7,7 @@ using TaskManagetV2.Components;
 
 namespace TaskManagetV2.Services
 {
-    interface ITimer
+    public interface ITimer
     {
         void AddTask(AlarmRow element);
         void RemoveTask(AlarmRow element);

@@ -17,7 +17,7 @@ namespace TaskManagetV2.Forms
     {
         ITimer timer;
 
-        Timer_form(ITimer timer)
+        public Timer_form(ITimer timer)
         {
             InitializeComponent();
 
